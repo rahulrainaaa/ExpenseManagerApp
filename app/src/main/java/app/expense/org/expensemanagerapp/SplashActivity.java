@@ -99,7 +99,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
                 //Toast.makeText(getApplicationContext(), "Timer", Toast.LENGTH_SHORT).show();
             }
-        }, 1200);
+        }, 2000);
 
 
 
