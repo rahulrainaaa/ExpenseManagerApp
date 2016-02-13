@@ -6,7 +6,7 @@ import app.expense.org.Model.Account;
 import app.expense.org.Model.Expense;
 
 /**
- * Constants Class for holding static data members.
+ * @desc: Constants Class for holding static data members.
  */
 public class Constants
 {
