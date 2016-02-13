@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Expense Manager App</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_about">About</string>
+    <string name="action_save_expense">Save</string>
+
+    <string name="errorSelectionFlagValue">Error: Invalid selectionFlag value.</string>
+    <string name="title_activity_expense_description">Expense</string>
+    <string name="large_text">Text View</string>
+    <string name="title_activity_expense_create">New Expense</string>
+    <string name="title_activity_category_create">New Category</string>
+    <string name="title_activity_account_create_activitiy">New Account</string>
+    <string name="title_activity_reminder_create_actvity">New Reminder</string>
+</resources>

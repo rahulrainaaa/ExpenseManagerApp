@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_expense" android:icon="@android:drawable/ic_menu_camera"
+            android:title="Expense" />
+        <item android:id="@+id/nav_category" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Category" />
+        <item android:id="@+id/nav_account" android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Account" />
+        <item android:id="@+id/nav_reminder" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Reminder" />
+    </group>
+
+    <item android:title="Expense Filter">
+        <menu>
+            <item android:id="@+id/nav_category_filer" android:icon="@android:drawable/ic_menu_share"
+                android:title="Category Filter" />
+            <item android:id="@+id/nav_account_filter" android:icon="@android:drawable/ic_menu_send"
+                android:title="Account Filter" />
+        </menu>
+    </item>
+
+</menu>
