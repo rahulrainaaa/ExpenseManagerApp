@@ -132,17 +132,17 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.expense_create, menu);
-        return true;
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         hideKeypad();
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.expense_create, menu);
+        return true;
     }
 
     @Override
@@ -164,11 +164,15 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             }
             else
             {
-                //expense data not valid to be entered in the SQLite DB.
+                //expense data not valid--perform check
             }
 
 
             return true;
+        }
+        else if(id == R.id.action_get_color)
+        {
+            getExpenseColor();
         }
 
         return super.onOptionsItemSelected(item);
@@ -291,6 +295,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
      */
     private void saveExpenseData()
     {
+        //do SQLite operation to save data.
         Toast.makeText(getApplicationContext(), "Expense saved.", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(ExpenseCreateActivity.this, DashboardActivity.class));
         finish();
@@ -333,7 +338,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //save button is clicked.
-                saveExpenseData();
+
             }
         });
         alertDialogBuilder.setCancelable(false);
