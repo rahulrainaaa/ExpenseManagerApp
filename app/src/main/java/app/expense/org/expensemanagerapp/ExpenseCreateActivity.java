@@ -61,7 +61,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     EditText txtSpenton, txtPrice;
     DatePicker datepicker;
     TimePicker timePicker;
-    Spinner spinnerAccount, spinnerCategory, spinnerColor;
+    Spinner spinnerAccount, spinnerCategory;
     ArrayAdapter<String> accountAdapter, categoryAdapter, colorAdapter;
 
     @Override
@@ -78,7 +78,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         spinnerAccount = (Spinner)findViewById(R.id.spinner_account);
         spinnerCategory =(Spinner)findViewById(R.id.spinner_category);
-        spinnerColor =(Spinner)findViewById(R.id.spinner_indicator_color);
 
         accountAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.account);
         categoryAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.categories);
@@ -86,11 +85,9 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         spinnerAccount.setAdapter(accountAdapter);
         spinnerCategory.setAdapter(categoryAdapter);
-        spinnerColor.setAdapter(colorAdapter);
 
         spinnerAccount.setOnItemSelectedListener(this);
         spinnerCategory.setOnItemSelectedListener(this);
-        spinnerColor.setOnItemSelectedListener(this);
 
         //color picker dialog.
         LayoutInflater inflater = getLayoutInflater();
@@ -231,10 +228,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
                 break;
             case R.id.spinner_category:
                 //Toast.makeText(getApplicationContext(), "category item selected", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.spinner_indicator_color:
-                //Toast.makeText(getApplicationContext(), "indicator color item selected", Toast.LENGTH_SHORT).show();
-
                 break;
             default:
                 break;

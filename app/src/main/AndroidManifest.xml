@@ -38,6 +38,7 @@
         <activity
             android:name=".ExpenseCreateActivity"
             android:label="@string/title_activity_expense_create"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
