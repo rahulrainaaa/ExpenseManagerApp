@@ -25,9 +25,5 @@ public class Constants
     //Application's database name.
     public static String dbname = "expensemanagerdbxxx";
 
-    //Contants indicator colors
-    public static ArrayList<String> indColor = null;
-
-
 
 }

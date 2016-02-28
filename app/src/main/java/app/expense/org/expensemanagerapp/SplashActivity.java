@@ -72,19 +72,6 @@ public class SplashActivity extends AppCompatActivity {
             Constants.account.add(accountSet.getString(0));
         }
 
-        //Setting few default colors
-        Constants.indColor = new ArrayList<String>();
-        Constants.indColor.add("Red");
-        Constants.indColor.add("Blue");
-        Constants.indColor.add("Green");
-        Constants.indColor.add("Gray");
-        Constants.indColor.add("Violet");
-        Constants.indColor.add("Margenta");
-        Constants.indColor.add("Orange");
-        Constants.indColor.add("Yellow");
-        Constants.indColor.add("Brown");
-        Constants.indColor.add("Sky blue");
-
         //Handler for holdind few seconds at splash screen
         Handler handler = new Handler();
 

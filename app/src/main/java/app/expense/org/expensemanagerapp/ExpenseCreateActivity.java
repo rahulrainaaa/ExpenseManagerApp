@@ -64,7 +64,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     DatePicker datepicker;
     TimePicker timePicker;
     Spinner spinnerAccount, spinnerCategory;
-    ArrayAdapter<String> accountAdapter, categoryAdapter, colorAdapter;
+    ArrayAdapter<String> accountAdapter, categoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         accountAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.account);
         categoryAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.categories);
-        colorAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.indColor);
 
         spinnerAccount.setAdapter(accountAdapter);
         spinnerCategory.setAdapter(categoryAdapter);
