@@ -3,6 +3,7 @@ package app.expense.org.expensemanagerapp;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
@@ -50,6 +51,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     private int TAKE_PHOTO_CODE = 0;
     private String fileName = "";
     private String filePath = "";
+    private boolean flagColorSet = false;
     private int red = 0;
     private int green = 0;
     private int blue = 0;
@@ -88,45 +90,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         spinnerAccount.setOnItemSelectedListener(this);
         spinnerCategory.setOnItemSelectedListener(this);
-
-        //color picker dialog.
-        LayoutInflater inflater = getLayoutInflater();
-        View v = inflater.inflate(R.layout.dialog_color_rgb_select, null);
-
-        colorCanvas = (ImageView)v.findViewById(R.id.imageViewMixcolor);
-
-        SeekBar seekBarRed = (SeekBar)v.findViewById(R.id.seekBarR);
-        SeekBar seekBarGreen = (SeekBar)v.findViewById(R.id.seekBarG);
-        SeekBar seekBarBlue = (SeekBar)v.findViewById(R.id.seekBarB);
-
-        seekBarRed.setProgress(0);
-        seekBarRed.incrementProgressBy(1);
-        seekBarRed.setMax(255);
-
-        seekBarGreen.setProgress(0);
-        seekBarGreen.incrementProgressBy(1);
-        seekBarGreen.setMax(255);
-
-        seekBarBlue.setProgress(0);
-        seekBarBlue.incrementProgressBy(1);
-        seekBarBlue.setMax(255);
-
-        seekBarRed.setOnSeekBarChangeListener(this);
-        seekBarGreen.setOnSeekBarChangeListener(this);
-        seekBarBlue.setOnSeekBarChangeListener(this);
-
-        seekBarRed.setSoundEffectsEnabled(true);
-        seekBarGreen.setSoundEffectsEnabled(true);
-        seekBarBlue.setSoundEffectsEnabled(true);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ExpenseCreateActivity.this);
-        alertDialogBuilder.setPositiveButton("OK", null);
-        alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setIcon(android.R.drawable.ic_menu_edit);
-        alertDialogBuilder.setTitle("RGB Color");
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.setView(v);
-        alertDialog.show();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +156,10 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             {
                 txtSpenton.setError(null);
                 txtPrice.setError(null);
+                if(flagColorSet == false)
+                {
+                    getExpenseColor();
+                }
                 saveExpenseData();
             }
             else
@@ -257,7 +224,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
      */
     private void hideKeypad()
     {
-        txtSpenton.setText(filePath);
+
         View selectedView = this.getCurrentFocus();
         if (selectedView != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -329,9 +296,58 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         finish();
     }
 
+    private void getExpenseColor()
+    {
+        //color picker dialog.
+        LayoutInflater inflater = getLayoutInflater();
+        View v = inflater.inflate(R.layout.dialog_color_rgb_select, null);
+
+        colorCanvas = (ImageView)v.findViewById(R.id.imageViewMixcolor);
+
+        SeekBar seekBarRed = (SeekBar)v.findViewById(R.id.seekBarR);
+        SeekBar seekBarGreen = (SeekBar)v.findViewById(R.id.seekBarG);
+        SeekBar seekBarBlue = (SeekBar)v.findViewById(R.id.seekBarB);
+
+        seekBarRed.setProgress(0);
+        seekBarRed.incrementProgressBy(1);
+        seekBarRed.setMax(255);
+
+        seekBarGreen.setProgress(0);
+        seekBarGreen.incrementProgressBy(1);
+        seekBarGreen.setMax(255);
+
+        seekBarBlue.setProgress(0);
+        seekBarBlue.incrementProgressBy(1);
+        seekBarBlue.setMax(255);
+
+        seekBarRed.setOnSeekBarChangeListener(this);
+        seekBarGreen.setOnSeekBarChangeListener(this);
+        seekBarBlue.setOnSeekBarChangeListener(this);
+
+        seekBarRed.setSoundEffectsEnabled(true);
+        seekBarGreen.setSoundEffectsEnabled(true);
+        seekBarBlue.setSoundEffectsEnabled(true);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ExpenseCreateActivity.this);
+        alertDialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //save button is clicked.
+                saveExpenseData();
+            }
+        });
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setIcon(android.R.drawable.ic_menu_edit);
+        alertDialogBuilder.setTitle("Expense Indicator Color");
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setView(v);
+        alertDialog.show();
+    }
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+        flagColorSet = true;
         switch (seekBar.getId())
         {
             case R.id.seekBarR:
