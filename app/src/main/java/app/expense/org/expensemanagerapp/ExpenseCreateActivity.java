@@ -159,7 +159,10 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
                 {
                     getExpenseColor();
                 }
-                saveExpenseData();
+                else
+                {
+                    saveExpenseData();
+                }
             }
             else
             {
