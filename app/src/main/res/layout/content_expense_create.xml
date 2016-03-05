@@ -29,9 +29,9 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Spent On"
+                android:text="Spent On:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <EditText
@@ -50,9 +50,9 @@
 
             <TextView
                 android:id="@+id/textView12"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Price"
+                android:text="Price:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <EditText
@@ -82,9 +82,9 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Account"
+                android:text="Account:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <Spinner
@@ -102,9 +102,9 @@
 
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="Category:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <Spinner
@@ -127,8 +127,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TimePicker
                 android:id="@+id/timepicker_expense"
@@ -150,10 +157,19 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
             <DatePicker
                 android:id="@+id/datepicker_expense"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:spinnersShown="true"
+                android:calendarViewShown="false"/>
         </LinearLayout>
 
         <LinearLayout
