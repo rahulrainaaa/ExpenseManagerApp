@@ -3,11 +3,13 @@ package app.expense.org.expensemanagerapp;
 import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,8 +51,8 @@ public class DashboardActivity extends AppCompatActivity
     NavigationView navigationView;
 
     //Global variables and flags
-    int selectionFlag = 0;  //0=exp, 1= cat, 2=acc and 3=rem
-
+    int selectionFlag = 0;  //0=exp, 1= cat, 2=acc and 3=rem.
+    String newCategoryText = "";  //New added Category from input box.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +73,11 @@ public class DashboardActivity extends AppCompatActivity
                     finish();
                 } else if (selectionFlag == 1) {
                     //Add new categoty
-                    startActivity(new Intent(DashboardActivity.this, CategoryCreateActivity.class));
-                    finish();
+                    //startActivity(new Intent(DashboardActivity.this, CategoryCreateActivity.class));
+                    //finish();
+                    createCategory();
+
+
                 } else if (selectionFlag == 2) {
                     //Add new account
                     startActivity(new Intent(DashboardActivity.this, AccountCreateActivitiy.class));
@@ -310,5 +316,42 @@ public class DashboardActivity extends AppCompatActivity
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setView(lw);
         alertDialog.show();
+    }
+
+    /**
+     * @method: createCategory
+     * @desc: Creates input AlertDialog to inout category string and then inserts in the SQLite DB.
+     */
+    private void createCategory()
+    {
+        //Create AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("New Category Name");
+
+        // Set up the EditText.
+        final EditText input = new EditText(this);
+
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //Save the new Category added.
+                newCategoryText = input.getText().toString();
+            }
+        });
+
+        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }
