@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
             mydatabase.execSQL("INSERT INTO category VALUES ('Grocery')");
 
             //Three app's default entry for account.
-            mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Saving Account','Saving Account','Saving Account transaction using debit card or online banking.')");
+            mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Saving Account','Savings','Saving Account transaction using debit card or online banking.')");
             mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Credit Card','Loan Account','Credit card bank account for transaction.')");
             mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Paytm','Paytm Account','Paytm Account for online transactions.')");
 
