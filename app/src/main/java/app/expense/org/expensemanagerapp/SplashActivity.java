@@ -88,8 +88,10 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 1300);
 
+    }
 
-
-
+    @Override
+    public void onBackPressed() {
+        //Disable the back button for splash screen.
     }
 }

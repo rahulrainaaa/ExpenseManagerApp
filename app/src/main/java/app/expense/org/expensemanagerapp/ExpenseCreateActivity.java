@@ -253,7 +253,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
             if(tSpentOn.equalsIgnoreCase(""))
             {
-                txtSpenton.setError("Cannot be empty");
+                txtSpenton.setError("Enter expense item");
                 return false;   //string is empty
             }
             else
@@ -271,7 +271,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             }
             if(tPrice.equalsIgnoreCase(""))
             {
-                txtPrice.setError("Enter the price");
+                txtPrice.setError("Enter price");
                 return false;
             }
             else

@@ -327,6 +327,7 @@ public class DashboardActivity extends AppCompatActivity
         //Create AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("New Category Name");
+        builder.setCancelable(false);
 
         // Set up the EditText.
         final EditText input = new EditText(this);
