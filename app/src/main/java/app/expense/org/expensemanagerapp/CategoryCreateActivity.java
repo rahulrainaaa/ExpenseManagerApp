@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 public class CategoryCreateActivity extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class CategoryCreateActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        Toast.makeText(getApplicationContext(), "Changes Discarded.", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(CategoryCreateActivity.this, DashboardActivity.class));
         finish();
     }

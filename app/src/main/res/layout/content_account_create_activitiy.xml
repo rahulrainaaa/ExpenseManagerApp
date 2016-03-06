@@ -27,7 +27,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/editTextAccount"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -40,19 +40,19 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Account Type:"
             android:id="@+id/textView3"
-            android:layout_below="@+id/editText"
+            android:layout_below="@+id/editTextAccount"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
+            android:id="@+id/editTextType"
             android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/editText"
-            android:layout_alignEnd="@+id/editText" />
+            android:layout_alignRight="@+id/editTextAccount"
+            android:layout_alignEnd="@+id/editTextAccount" />
 
         <TextView
             android:layout_width="match_parent"
@@ -60,19 +60,19 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Description:"
             android:id="@+id/textView5"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/editTextType"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
+            android:id="@+id/editTextDesc"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/editText2"
-            android:layout_alignEnd="@+id/editText2" />
+            android:layout_alignRight="@+id/editTextType"
+            android:layout_alignEnd="@+id/editTextType" />
 
     </LinearLayout>
 

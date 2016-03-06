@@ -185,6 +185,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         hideKeypad();
         startActivity(new Intent(ExpenseCreateActivity.this, DashboardActivity.class));
+        Toast.makeText(getApplicationContext(), "Changes Discarded.", Toast.LENGTH_SHORT).show();
         finish();
     }
 
