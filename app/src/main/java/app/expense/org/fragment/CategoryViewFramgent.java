@@ -41,22 +41,20 @@ public class CategoryViewFramgent extends Fragment{
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.categories);
         listView.setAdapter(adapter);
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedCategoryText = "" + Constants.categories.get(position).toString();
 
                 Snackbar.make(view, "Category: " + Constants.categories.get(position), Snackbar.LENGTH_LONG)
                         .setAction("Delete", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                            @Override
+                            public void onClick(View v) {
 
-                        Toast.makeText(getActivity().getApplicationContext(), selectedCategoryText + "Category to be deleted.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), selectedCategoryText + "Category to be deleted.", Toast.LENGTH_SHORT).show();
 
-                    }
-                }).show();
-                return false;
+                            }
+                        }).show();
             }
         });
 

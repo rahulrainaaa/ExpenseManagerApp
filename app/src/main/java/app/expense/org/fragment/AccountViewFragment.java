@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import app.expense.org.adapter.AccountViewAdapter;
 import app.expense.org.expensemanagerapp.R;
@@ -36,7 +37,15 @@ public class AccountViewFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Snackbar.make(view, "text", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "Desription: " + Constants.accountData.get(position).desc, Snackbar.LENGTH_LONG)
+                        .setAction("Delete", new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+
+                                Toast.makeText(getActivity().getApplicationContext(), "To be deleted.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
             }
         });
 

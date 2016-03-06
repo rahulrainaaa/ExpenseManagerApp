@@ -33,8 +33,10 @@ public class SplashActivity extends AppCompatActivity {
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS category(name VARCHAR);");
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY NOT NULL, name VARCHAR, type VARCHAR, desc VARCHAR);");
 
-        mydatabase.execSQL("Delete from category");
-        mydatabase.execSQL("Delete from account");
+        mydatabase.execSQL("Delete from category where name = ''");
+        mydatabase.execSQL("Delete from account where name = ''");
+        //mydatabase.execSQL("Delete from expense");
+
         mydatabase.execSQL("INSERT INTO expense (spenton, price, datetime, account, category, image, indicator) VALUES ('Pizza','450','30 Jan 15 03:15 PM', 'Paytm', 'Food', '', 'red' )");
 
         //Check if there is any entry in Category table.
