@@ -63,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
         Constants.expenseData = new ArrayList<Expense>();
         while(expenseSet.moveToNext())
         {
-    // (id, spenton, price, datetime, account, category, image, indicator)
+        // (id, spenton, price, datetime, account, category, image, indicator)
             Expense expense = new Expense();
             expense.id = Integer.parseInt(expenseSet.getString(0).toString());
             expense.spenton = expenseSet.getString(1).toString();

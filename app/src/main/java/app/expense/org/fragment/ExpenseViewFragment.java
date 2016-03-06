@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import app.expense.org.adapter.ExpenseViewAdapter;
 import app.expense.org.expensemanagerapp.ExpenseDescriptionActivity;
 import app.expense.org.expensemanagerapp.R;
+import app.expense.org.utils.Constants;
 
 /**
  * Created by user on 30/1/16.
@@ -23,7 +24,6 @@ import app.expense.org.expensemanagerapp.R;
 public class ExpenseViewFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     ListView lw;
-    ArrayList<String> list;
     ExpenseViewAdapter adapter;
 
     @Nullable
@@ -33,12 +33,8 @@ public class ExpenseViewFragment extends Fragment implements AdapterView.OnItemC
         View view = inflater.inflate(R.layout.framgment_viewexpense, null);
 
         lw = (ListView)view.findViewById(R.id.listViewExpense);
-        list = new ArrayList<String>();
-        for(int i = 0; i < 30; i++)
-        {
-            list.add("item " + i);
-        }
-        adapter = new ExpenseViewAdapter(getActivity(), list);
+
+        adapter = new ExpenseViewAdapter(getActivity(), Constants.expenseData);
         lw.setAdapter(adapter);
         lw.setOnItemClickListener(this);
 
