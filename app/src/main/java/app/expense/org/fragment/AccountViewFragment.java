@@ -38,7 +38,7 @@ public class AccountViewFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Snackbar.make(view, "Desription: " + Constants.accountData.get(position).desc, Snackbar.LENGTH_LONG)
-                        .setAction("Delete", new View.OnClickListener() {
+                        .setAction("Delete?", new View.OnClickListener() {
 
                             @Override
                             public void onClick(View v) {

@@ -47,7 +47,7 @@ public class CategoryViewFramgent extends Fragment{
                 selectedCategoryText = "" + Constants.categories.get(position).toString();
 
                 Snackbar.make(view, "Category: " + Constants.categories.get(position), Snackbar.LENGTH_LONG)
-                        .setAction("Delete", new View.OnClickListener() {
+                        .setAction("Delete?", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
