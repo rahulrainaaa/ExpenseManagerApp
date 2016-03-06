@@ -1,30 +1,28 @@
 package app.expense.org.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import app.expense.org.Model.Account;
 import app.expense.org.expensemanagerapp.R;
 
 
 /**
  * Created by user on 13/1/16.
  */
-public class AccountViewAdapter extends ArrayAdapter<String> {
+public class AccountViewAdapter extends ArrayAdapter<Account> {
 
     private Activity activity;
     private LayoutInflater inflater;
-    private ArrayList<String> list;
+    private ArrayList<Account> list;
 
-    public AccountViewAdapter(Activity activity, ArrayList<String> list) {
+    public AccountViewAdapter(Activity activity, ArrayList<Account> list) {
         super(activity, R.layout.listviewitem_account_view, list);
 
         this.activity = activity;
@@ -40,10 +38,8 @@ public class AccountViewAdapter extends ArrayAdapter<String> {
         TextView accountName = (TextView)view.findViewById(R.id.account_name);
         TextView accountDesc = (TextView)view.findViewById(R.id.account_desc);
 
-        String str = list.get(position).toString();
-
-        accountName.setText("" + str);
-        accountDesc.setText("" + str);
+        accountName.setText("" + list.get(position).name.toString());
+        accountDesc.setText("" + list.get(position).accountType.toString());
 
 
 

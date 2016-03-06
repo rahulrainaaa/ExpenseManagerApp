@@ -67,8 +67,8 @@ public class SplashActivity extends AppCompatActivity {
 
         //Getting all accounts from db and holding it in Constants.
         Cursor accountSet = mydatabase.rawQuery("Select * from account", null);
-        Constants.account = new ArrayList<String>();
         Constants.accountData = new ArrayList<Account>();
+        Constants.account = new ArrayList<String>();
         while (accountSet.moveToNext())
         {
             //Create the Account Model object and insert the data values in it.
@@ -78,8 +78,7 @@ public class SplashActivity extends AppCompatActivity {
             account.accountType = accountSet.getString(2);
             account.desc = accountSet.getString(3);
             Constants.accountData.add(account);
-            //Insert the account string values.
-            Constants.account.add(accountSet.getString(0));
+            Constants.account.add("" + accountSet.getString(1));
         }
 
         //Handler for holdind few seconds at splash screen
@@ -92,9 +91,9 @@ public class SplashActivity extends AppCompatActivity {
                 mydatabase.close();
                 Constants.filterAccount = new ArrayList<String>();
                 Constants.filterCategory = new ArrayList<String>();
-               // startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-               // finish();
-                //Toast.makeText(getApplicationContext(), "Timer", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                finish();
+
             }
         }, 1300);
 
