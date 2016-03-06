@@ -23,7 +23,7 @@ public class Constants
     public static ArrayList<Account> accountData = null;
 
     //Application's database name.
-    public static String dbname = "expensemanagerdbxxx";
+    public static String dbname = "expensemanagerdbxxxxx";
 
 
 }
