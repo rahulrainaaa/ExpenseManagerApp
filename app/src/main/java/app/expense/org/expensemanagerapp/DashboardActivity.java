@@ -5,6 +5,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -53,7 +55,9 @@ public class DashboardActivity extends AppCompatActivity
 
     //Global variables and flags
     int selectionFlag = 0;  //0=exp, 1= cat, 2=acc and 3=rem.
-    String newCategoryText = "";  //New added Category from input box.
+    SQLiteDatabase mydatabase = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,6 @@ public class DashboardActivity extends AppCompatActivity
                     //startActivity(new Intent(DashboardActivity.this, CategoryCreateActivity.class));
                     //finish();
                     createCategory();
-
 
                 } else if (selectionFlag == 2) {
                     //Add new account
@@ -128,6 +131,18 @@ public class DashboardActivity extends AppCompatActivity
         {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onStop() {
+
+        //First close and flush objects and then stop the activity.
+
+        if(mydatabase.isOpen())
+        {
+            mydatabase.close();
+        }
+        super.onStop();
     }
 
     @Override
@@ -338,22 +353,69 @@ public class DashboardActivity extends AppCompatActivity
 
         // Set up the buttons
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                //Save the new Category added.
-                newCategoryText = input.getText().toString();
-            }
-        });
+                        //Save the new Category added.
+                        String newCategoryText = input.getText().toString();
 
-        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-                dialog.cancel();
-            }
-        });
 
-        builder.show();
+                        try {
+
+                            mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
+                            mydatabase.execSQL("INSERT INTO category VALUES ('" + newCategoryText + "')");
+
+                            Cursor categorySet = mydatabase.rawQuery("Select name from category", null);
+                            Constants.categories = new ArrayList<String>();
+                            while (categorySet.moveToNext())
+                            {
+                                Constants.categories.add(categorySet.getString(0));
+                            }
+
+                            Toast.makeText(getApplicationContext(), "Category Added Sucessfully.", Toast.LENGTH_SHORT).show();
+
+                            //Reload View Categories fragment load.
+                            selectionFlag = 1;
+                            CategoryViewFramgent fragment = new CategoryViewFramgent();
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                            if (!fragmentTransaction.isEmpty()) {
+                                fragmentTransaction.remove(fragment);
+                            }
+                            fragmentTransaction.replace(R.id.fragment_switch, fragment);
+                            fragmentTransaction.commit();
+
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(getApplicationContext(), "Failed: Cannot add this category.", Toast.LENGTH_LONG).show();
+                        }
+                        finally {
+                            if(mydatabase.isOpen())
+                            {
+                                mydatabase.close();
+                            }
+                        }
+
+                    }
+                }
+
+        );
+
+            builder.setNegativeButton("Discard", new DialogInterface.OnClickListener()
+
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.cancel();
+                        }
+                    }
+
+            );
+
+            builder.show();
+        }
+
     }
-}
