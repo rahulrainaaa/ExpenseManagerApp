@@ -33,7 +33,6 @@ public class AccountViewAdapter extends ArrayAdapter<String> {
 
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.listviewitem_account_view, null);

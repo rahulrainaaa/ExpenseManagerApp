@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import app.expense.org.Model.Account;
 import app.expense.org.utils.Constants;
 
 /*
@@ -65,10 +66,19 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         //Getting all accounts from db and holding it in Constants.
-        Cursor accountSet = mydatabase.rawQuery("Select name from account", null);
+        Cursor accountSet = mydatabase.rawQuery("Select * from account", null);
         Constants.account = new ArrayList<String>();
+        Constants.accountData = new ArrayList<Account>();
         while (accountSet.moveToNext())
         {
+            //Create the Account Model object and insert the data values in it.
+            Account account = new Account();
+            account.id = Integer.parseInt(accountSet.getString(0));
+            account.name = accountSet.getString(1);
+            account.accountType = accountSet.getString(2);
+            account.desc = accountSet.getString(3);
+            Constants.accountData.add(account);
+            //Insert the account string values.
             Constants.account.add(accountSet.getString(0));
         }
 
@@ -82,8 +92,8 @@ public class SplashActivity extends AppCompatActivity {
                 mydatabase.close();
                 Constants.filterAccount = new ArrayList<String>();
                 Constants.filterCategory = new ArrayList<String>();
-                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-                finish();
+               // startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+               // finish();
                 //Toast.makeText(getApplicationContext(), "Timer", Toast.LENGTH_SHORT).show();
             }
         }, 1300);
@@ -93,5 +103,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Disable the back button for splash screen.
+
+        finish();
     }
 }
