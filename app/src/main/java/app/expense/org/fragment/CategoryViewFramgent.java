@@ -1,6 +1,10 @@
 package app.expense.org.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
+
+import android.support.v7.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,6 +28,8 @@ public class CategoryViewFramgent extends Fragment{
 
     ListView listView;
     ArrayAdapter<String> adapter;
+    String selectedCategoryText = "";
+    SQLiteDatabase mydatabase = null;
 
     @Nullable
     @Override
@@ -37,7 +44,18 @@ public class CategoryViewFramgent extends Fragment{
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Snackbar.make(view, "on category selected listener.", Snackbar.LENGTH_LONG).show();
+
+                selectedCategoryText = "" + Constants.categories.get(position).toString();
+
+                Snackbar.make(view, "Category: " + Constants.categories.get(position), Snackbar.LENGTH_LONG)
+                        .setAction("Delete", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Toast.makeText(getActivity().getApplicationContext(), selectedCategoryText + "Category to be deleted.", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).show();
                 return false;
             }
         });

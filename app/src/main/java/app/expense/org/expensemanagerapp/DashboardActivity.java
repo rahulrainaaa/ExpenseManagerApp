@@ -134,18 +134,6 @@ public class DashboardActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop() {
-
-        //First close and flush objects and then stop the activity.
-
-        if(mydatabase.isOpen())
-        {
-            mydatabase.close();
-        }
-        super.onStop();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.dashboard, menu);
@@ -367,6 +355,7 @@ public class DashboardActivity extends AppCompatActivity
                             mydatabase.execSQL("INSERT INTO category VALUES ('" + newCategoryText + "')");
 
                             Cursor categorySet = mydatabase.rawQuery("Select name from category", null);
+                            Constants.categories = null;
                             Constants.categories = new ArrayList<String>();
                             while (categorySet.moveToNext())
                             {

@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -88,6 +87,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+
                 mydatabase.close();
                 Constants.filterAccount = new ArrayList<String>();
                 Constants.filterCategory = new ArrayList<String>();
