@@ -287,11 +287,11 @@ public class DashboardActivity extends AppCompatActivity
                 {
                     if(i == 0)
                     {
-                        filterStringAccount = "" + Constants.filterAccount.get(i).toString();
+                        filterStringAccount = "'" + Constants.filterAccount.get(i).toString() + "'";
                     }
                     else
                     {
-                        filterStringAccount = filterStringAccount + "," + Constants.filterAccount.get(i).toString();
+                        filterStringAccount = filterStringAccount + ",'" + Constants.filterAccount.get(i).toString() + "'";
                     }
                 }
                 String addAccountFilter = "";
@@ -349,6 +349,10 @@ public class DashboardActivity extends AppCompatActivity
                     expense.color = expenseSet.getString(7).toString();
 
                     Constants.expenseData.add(expense);
+                }
+                if(Constants.appNavState == 0)
+                {
+                    loadExpenseFragment();
                 }
                 mydatabase.close();
             }
