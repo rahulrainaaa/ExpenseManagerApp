@@ -3,8 +3,11 @@ package app.expense.org.expensemanagerapp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import app.expense.org.Model.Expense;
@@ -49,6 +53,13 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
         textTime.setText("" + expense.datetime);
         textAccount.setText("" + expense.account);
         textCategory.setText("" + expense.category);
+        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expmgr/" + expense.image;
+        File file = new File(filePath);
+        if ((file.exists()) && (!expense.image.trim().isEmpty()))
+        {
+            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            imgExpense.setImageBitmap(myBitmap);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +73,7 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                         //Delete this selected enty.
                         mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
                         mydatabase.execSQL("Delete from expense where id = " + expense.id);
-
+                        String filename = "" + expense.image;
                         //Getting all expenses data from db and holding in model object.
                         Cursor expenseSet = mydatabase.rawQuery(Constants.selectExpense, null);
                         Constants.expenseData = null;
@@ -84,6 +95,17 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                         }
 
                         mydatabase.close();
+                        if(!filename.trim().isEmpty())
+                        {
+                            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expmgr/" + filename);
+                            if(file.exists())
+                            {
+                                file.delete();
+                            }
+                        }
+
+
+
                         Toast.makeText(getApplicationContext(), "Expense Deleted.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ExpenseDescriptionActivity.this, DashboardActivity.class));
                         finish();
