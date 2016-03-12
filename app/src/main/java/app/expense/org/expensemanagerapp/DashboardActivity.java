@@ -152,7 +152,7 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Expense Manager Application", Toast.LENGTH_SHORT).show();
             return true;
         }
 

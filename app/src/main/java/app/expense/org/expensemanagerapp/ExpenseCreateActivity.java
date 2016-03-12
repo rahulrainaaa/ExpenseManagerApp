@@ -229,6 +229,15 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             Log.d("CameraDemo", "Pic saved");
             Toast.makeText(getApplicationContext(), "Image Saved.", Toast.LENGTH_SHORT).show();
         }
+        else
+        {
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expmgr/" + fileName + "");
+            if(file.exists())
+            {
+                file.delete();
+            }
+            fileName = "";
+        }
     }
 
     /**
