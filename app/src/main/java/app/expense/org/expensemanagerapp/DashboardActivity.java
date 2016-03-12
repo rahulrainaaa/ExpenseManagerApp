@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app.expense.org.Model.Account;
+import app.expense.org.Model.Expense;
 import app.expense.org.fragment.AccountViewFragment;
 import app.expense.org.fragment.CategoryViewFramgent;
 import app.expense.org.fragment.ExpenseViewFragment;
@@ -56,8 +58,6 @@ public class DashboardActivity extends AppCompatActivity
     //Global variables and flags
     int selectionFlag = 0;  //0=exp, 1= cat, 2=acc and 3=rem.
     SQLiteDatabase mydatabase = null;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +119,10 @@ public class DashboardActivity extends AppCompatActivity
         {
             loadAccountFragment();
         }
+        else if (Constants.appNavState == 3)
+        {
+            loadReminderFragment();
+        }
 
     }
 
@@ -175,21 +179,7 @@ public class DashboardActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_reminder)
         {
-            //View Reminders fragment load
-            getSupportActionBar().setTitle("Reminder");
-            selectionFlag = 3;
-
-            ReminderViewFragment fragment = new ReminderViewFragment();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            if (!fragmentTransaction.isEmpty())
-            {
-                fragmentTransaction.remove(fragment);
-            }
-
-            fragmentTransaction.replace(R.id.fragment_switch, fragment);
-            fragmentTransaction.commit();
-
+            loadReminderFragment();
         }
         else if (id == R.id.nav_category_filer)
         {
@@ -210,8 +200,11 @@ public class DashboardActivity extends AppCompatActivity
         return true;
     }
 
-
-
+    /**
+     * @method: createListViewSelectionPopup
+     * @desc: creates dialog box for category and account filter selections.
+     * @param filter
+     */
     private void createListViewSelectionPopup(final int filter)
     {
         ListView lw = new ListView(getApplicationContext());
@@ -219,11 +212,13 @@ public class DashboardActivity extends AppCompatActivity
 
         if (filter == 0)
         {
+            Constants.filterCategory = null;
             Constants.filterCategory = new ArrayList<String>();
             adapter = new ArrayAdapter<String>(DashboardActivity.this, android.R.layout.simple_list_item_checked, Constants.categories);
         }
         else if (filter == 1)
         {
+            Constants.filterAccount = null;
             Constants.filterAccount = new ArrayList<String>();
             adapter = new ArrayAdapter<String>(DashboardActivity.this, android.R.layout.simple_list_item_checked, Constants.account);
         }
@@ -276,7 +271,88 @@ public class DashboardActivity extends AppCompatActivity
         });
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DashboardActivity.this);
-        alertDialogBuilder.setPositiveButton("OK", null);
+        alertDialogBuilder.setPositiveButton("Filter", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
+
+                //Getting all expenses data from db and holding in model object.
+                String filterStringAccount = "";
+                String filterStringCategory = "";
+                String expenseFilterQueryString = "Select * from expense where ";
+                boolean flagBoth = false;
+                int i = 0;
+                for (i = 0; i < Constants.filterAccount.size(); i++)
+                {
+                    if(i == 0)
+                    {
+                        filterStringAccount = "" + Constants.filterAccount.get(i).toString();
+                    }
+                    else
+                    {
+                        filterStringAccount = filterStringAccount + "," + Constants.filterAccount.get(i).toString();
+                    }
+                }
+                String addAccountFilter = "";
+                if(i > 0)
+                {
+                    addAccountFilter = "account IN (" + filterStringAccount + ") ";
+                    expenseFilterQueryString = expenseFilterQueryString + "" + addAccountFilter;
+                    flagBoth = true;
+                }
+
+                for (i = 0; i < Constants.filterCategory.size(); i++)
+                {
+                    if(i == 0)
+                    {
+                        filterStringCategory = "'" + Constants.filterCategory.get(i).toString() + "'";
+                    }
+                    else
+                    {
+                        filterStringCategory = filterStringCategory + ",'" + Constants.filterCategory.get(i).toString() + "'";
+                    }
+                }
+
+                String addCategoryFilter = "";
+                if(i > 0)
+                {
+                    addCategoryFilter = "category IN (" + filterStringCategory + ")";
+                    if(flagBoth)
+                    {
+                        expenseFilterQueryString = expenseFilterQueryString + " AND " + addCategoryFilter;
+                    }
+                    else
+                    {
+                        expenseFilterQueryString = expenseFilterQueryString + " " + addCategoryFilter;
+                    }
+                }
+
+
+                System.out.print(expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
+                Log.d("SQLite", expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
+                Log.e("SQLite", expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
+                Cursor expenseSet = mydatabase.rawQuery(expenseFilterQueryString, null);
+                Constants.expenseData = null;
+                Constants.expenseData = new ArrayList<Expense>();
+                while(expenseSet.moveToNext())
+                {
+                    // (id, spenton, price, datetime, account, category, image, indicator)
+                    Expense expense = new Expense();
+                    expense.id = Integer.parseInt(expenseSet.getString(0).toString());
+                    expense.spenton = expenseSet.getString(1).toString();
+                    expense.price = expenseSet.getString(2).toString();
+                    expense.datetime = expenseSet.getString(3).toString();
+                    expense.account = expenseSet.getString(4).toString();
+                    expense.category = expenseSet.getString(5).toString();
+                    expense.image = expenseSet.getString(6).toString();
+                    expense.color = expenseSet.getString(7).toString();
+
+                    Constants.expenseData.add(expense);
+                }
+                mydatabase.close();
+            }
+        });
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setIcon(android.R.drawable.ic_search_category_default);
         String filterType = (filter==0) ? "Category " : "Account ";
@@ -365,6 +441,10 @@ public class DashboardActivity extends AppCompatActivity
             builder.show();
         }
 
+    /**
+     * @method: loadExpenseFragment
+     * @desc: loads Expense Framment
+     */
     public void loadExpenseFragment()
     {
         //View Expenses Fragment load
@@ -383,6 +463,10 @@ public class DashboardActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    /**
+     * @method: loadCategoryFragment
+     * @desc: loads Category Framment
+     */
     public void loadCategoryFragment()
     {
         //View Categories fragment load
@@ -402,6 +486,10 @@ public class DashboardActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    /**
+     * @method: loadAccountFragment
+     * @desc: loads Account Framment
+     */
     public void loadAccountFragment()
     {
         //View Accounts fragment load
@@ -419,4 +507,27 @@ public class DashboardActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.fragment_switch, fragment);
         fragmentTransaction.commit();
     }
+
+    /**
+     *@method: loadReminderFragment
+     *@desc: loads Reminder Fragment
+     */
+    public void loadReminderFragment()
+    {
+        //View Reminders fragment load
+        getSupportActionBar().setTitle("Reminder");
+        selectionFlag = 3;
+        Constants.appNavState = 3;
+        ReminderViewFragment fragment = new ReminderViewFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        if (!fragmentTransaction.isEmpty())
+        {
+            fragmentTransaction.remove(fragment);
+        }
+
+        fragmentTransaction.replace(R.id.fragment_switch, fragment);
+        fragmentTransaction.commit();
+    }
+
 }

@@ -37,9 +37,8 @@ public class SplashActivity extends AppCompatActivity {
         //mydatabase.execSQL("Delete from expense");
         mydatabase.execSQL("Delete from category where name = ''");
         mydatabase.execSQL("Delete from account where name = ''");
-        //mydatabase.execSQL("Delete from expense");
 
-        mydatabase.execSQL("INSERT INTO expense (spenton, price, datetime, account, category, image, indicator) VALUES ('Pizza','450','30 Jan 15 03:15 PM', 'Paytm', 'Food', '', '343434' )");
+        //mydatabase.execSQL("INSERT INTO expense (spenton, price, datetime, account, category, image, indicator) VALUES ('Pizza','450','30 Jan 15 03:15 PM', 'Paytm', 'Food', '', '343434' )");
 
         //Check if there is any entry in Category table.
         Cursor resultSet = mydatabase.rawQuery("Select * from category",null);
