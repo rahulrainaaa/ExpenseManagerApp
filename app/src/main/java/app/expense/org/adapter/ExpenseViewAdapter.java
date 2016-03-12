@@ -54,7 +54,7 @@ public class ExpenseViewAdapter extends ArrayAdapter<Expense> {
 
         textItem.setText(expense.spenton);
         textDateTime.setText(expense.datetime);
-        textAccount.setText(expense.account);
+        textAccount.setText(expense.category + ", " + expense.account);
         sideColor.setText("" + (position + 1));
         //Drawable drawable = activity.getResources().getDrawable(R.drawable.circleshape, null);
         //sideColor.setBackgroundColor(Color.GREEN);

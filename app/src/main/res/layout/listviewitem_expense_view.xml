@@ -52,16 +52,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="02-Jan-2016, 10:30 AM"
-            android:id="@+id/textViewTime" />
+            android:text="My Account Name"
+            android:id="@+id/textViewAccount"
+            android:layout_below="@+id/textView12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="My Account Name"
-            android:id="@+id/textViewAccount"
-            android:layout_below="@+id/textView12" />
+            android:text="02-Jan-2016, 10:30 AM"
+            android:id="@+id/textViewTime" />
 
     </LinearLayout>
     <LinearLayout
