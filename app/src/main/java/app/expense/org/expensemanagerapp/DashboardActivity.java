@@ -332,6 +332,9 @@ public class DashboardActivity extends AppCompatActivity
                 System.out.print(expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
                 Log.d("SQLite", expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
                 Log.e("SQLite", expenseFilterQueryString + "\n\n\n\n\n\n\n\n\n\n\n\n");
+
+                Constants.selectExpense = "" + expenseFilterQueryString;
+
                 Cursor expenseSet = mydatabase.rawQuery(expenseFilterQueryString, null);
                 Constants.expenseData = null;
                 Constants.expenseData = new ArrayList<Expense>();

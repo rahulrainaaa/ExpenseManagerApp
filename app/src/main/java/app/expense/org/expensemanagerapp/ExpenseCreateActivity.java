@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -38,9 +40,12 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
+import app.expense.org.Model.Expense;
 import app.expense.org.utils.Constants;
 
 public class ExpenseCreateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SeekBar.OnSeekBarChangeListener {
@@ -48,6 +53,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     /**
      * Constants and Global variables.
      */
+    SQLiteDatabase mydatabase = null;
     private int TAKE_PHOTO_CODE = 0;
     private String fileName = "";
     private String filePath = "";
@@ -299,6 +305,42 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     private void saveExpenseData()
     {
         //do SQLite operation to save data.
+
+        mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
+
+        String spenton = txtSpenton.getText().toString();
+        String price = txtPrice.getText().toString();
+        String datemonth = new DateFormatSymbols().getMonths()[datepicker.getMonth()];
+        String setdate = datepicker.getDayOfMonth() + " " + datemonth + "," + datepicker.getYear();
+        String settime = String.valueOf(timePicker.getCurrentHour()) + ":" + String.valueOf(timePicker.getCurrentMinute());
+        String datetime = "" + setdate + "  " + settime;
+        String category = "" + Constants.categories.get(spinnerCategory.getSelectedItemPosition());
+        String account = "" + Constants.account.get(spinnerAccount.getSelectedItemPosition());
+        String hexcolor = String.format("%02x%02x%02x", red, green, blue);
+
+
+        mydatabase.execSQL("INSERT INTO expense (spenton, price, datetime, account, category, image, indicator) VALUES ('" + spenton + "','" + price + "','" + datetime + "', '" + account + "', '" + category + "', '" + fileName + "', '" + hexcolor + "' )");
+
+        Cursor expenseSet = mydatabase.rawQuery(Constants.selectExpense, null);
+        Constants.expenseData = null;
+        Constants.expenseData = new ArrayList<Expense>();
+        while(expenseSet.moveToNext())
+        {
+            // (id, spenton, price, datetime, account, category, image, indicator)
+            Expense expense = new Expense();
+            expense.id = Integer.parseInt(expenseSet.getString(0).toString());
+            expense.spenton = expenseSet.getString(1).toString();
+            expense.price = expenseSet.getString(2).toString();
+            expense.datetime = expenseSet.getString(3).toString();
+            expense.account = expenseSet.getString(4).toString();
+            expense.category = expenseSet.getString(5).toString();
+            expense.image = expenseSet.getString(6).toString();
+            expense.color = expenseSet.getString(7).toString();
+
+            Constants.expenseData.add(expense);
+        }
+        mydatabase.close();
+
         Toast.makeText(getApplicationContext(), "Expense saved.", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(ExpenseCreateActivity.this, DashboardActivity.class));
         finish();

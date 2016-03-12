@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import app.expense.org.Model.Expense;
@@ -47,12 +49,13 @@ public class ExpenseViewAdapter extends ArrayAdapter<Expense> {
         TextView textDateTime = (TextView)view.findViewById(R.id.textViewTime);
         TextView textAccount = (TextView)view.findViewById(R.id.textViewAccount);
         TextView sideColor = (TextView)view.findViewById(R.id.indicatorSideBar);
-
+        TextView priceExpense = (TextView)view.findViewById(R.id.txtPriceExpense);
 
 
         Expense expense = Constants.expenseData.get(position);
 
         textItem.setText(expense.spenton);
+        priceExpense.setText("Rs." + expense.price);
         textDateTime.setText(expense.datetime);
         textAccount.setText(expense.category + ", " + expense.account);
         sideColor.setText("" + (position + 1));

@@ -64,7 +64,7 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                         mydatabase.execSQL("Delete from expense where id = " + expense.id);
 
                         //Getting all expenses data from db and holding in model object.
-                        Cursor expenseSet = mydatabase.rawQuery("Select * from expense", null);
+                        Cursor expenseSet = mydatabase.rawQuery(Constants.selectExpense, null);
                         Constants.expenseData = null;
                         Constants.expenseData = new ArrayList<Expense>();
                         while(expenseSet.moveToNext())

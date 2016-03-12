@@ -28,6 +28,6 @@ public class Constants
 
     //Application's database name.
     public static String dbname = "expensemanagerdbxxxxx";
-
+    public static String selectExpense = "Select * from expense";
 
 }
