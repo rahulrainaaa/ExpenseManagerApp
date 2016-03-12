@@ -43,7 +43,9 @@ public class ExpenseViewFragment extends Fragment implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(new Intent(getActivity(), ExpenseDescriptionActivity.class));
+        Intent intent = new Intent(getActivity(), ExpenseDescriptionActivity.class);
+        intent.putExtra("expensePosition",position);
+        startActivity(intent);
 
         //Toast.makeText(getActivity().getApplicationContext(), "item selected", Toast.LENGTH_SHORT).show();
     }

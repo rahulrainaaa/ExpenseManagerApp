@@ -126,4 +126,15 @@ public class SplashActivity extends AppCompatActivity {
 
         finish();
     }
+
+    @Override
+    protected void onPause() {
+
+        if(mydatabase.isOpen())
+        {
+            mydatabase.close();
+        }
+        super.onPause();
+
+    }
 }
