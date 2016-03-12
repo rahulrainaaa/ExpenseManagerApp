@@ -34,6 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS category(name VARCHAR);");
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY NOT NULL, name VARCHAR, type VARCHAR, desc VARCHAR);");
 
+        //mydatabase.execSQL("Delete from expense");
         mydatabase.execSQL("Delete from category where name = ''");
         mydatabase.execSQL("Delete from account where name = ''");
         //mydatabase.execSQL("Delete from expense");

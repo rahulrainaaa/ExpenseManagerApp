@@ -24,6 +24,8 @@ public class Constants
     public static ArrayList<Expense> expenseData = null;
     public static ArrayList<Account> accountData = null;
 
+    public static int appNavState = 0;
+
     //Application's database name.
     public static String dbname = "expensemanagerdbxxxxx";
 

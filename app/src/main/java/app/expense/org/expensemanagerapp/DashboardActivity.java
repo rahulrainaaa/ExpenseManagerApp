@@ -74,16 +74,16 @@ public class DashboardActivity extends AppCompatActivity
                 //create a new expense or category or account or reminder depending on flag.
                 if (selectionFlag == 0) {
                     //Add new expense.
+                    Constants.appNavState = 0;
                     startActivity(new Intent(DashboardActivity.this, ExpenseCreateActivity.class));
                     finish();
                 } else if (selectionFlag == 1) {
-                    //Add new categoty
-                    //startActivity(new Intent(DashboardActivity.this, CategoryCreateActivity.class));
-                    //finish();
+                    Constants.appNavState = 1;
                     createCategory();
 
                 } else if (selectionFlag == 2) {
                     //Add new account
+                    Constants.appNavState = 2;
                     startActivity(new Intent(DashboardActivity.this, AccountCreateActivitiy.class));
                     finish();
                 } else if (selectionFlag == 3) {
@@ -107,16 +107,18 @@ public class DashboardActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ExpenseViewFragment fragment = new ExpenseViewFragment();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        if (!fragmentTransaction.isEmpty())
+        if(Constants.appNavState == 0)
         {
-            fragmentTransaction.remove(fragment);
+            loadExpenseFragment();
         }
-
-        fragmentTransaction.replace(R.id.fragment_switch, fragment);
-        fragmentTransaction.commit();
+        else if(Constants.appNavState == 1)
+        {
+            loadCategoryFragment();
+        }
+        else if (Constants.appNavState == 2)
+        {
+            loadAccountFragment();
+        }
 
     }
 
@@ -161,58 +163,20 @@ public class DashboardActivity extends AppCompatActivity
 
         if (id == R.id.nav_expense)
         {
-            //View Expenses Fragment load
-            selectionFlag = 0;
-
-            ExpenseViewFragment fragment = new ExpenseViewFragment();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            if (!fragmentTransaction.isEmpty())
-            {
-                fragmentTransaction.remove(fragment);
-            }
-
-            fragmentTransaction.replace(R.id.fragment_switch, fragment);
-            fragmentTransaction.commit();
-
+            loadExpenseFragment();
         }
         else if (id == R.id.nav_category)
         {
-            //View Categories fragment load
-            selectionFlag = 1;
-
-            CategoryViewFramgent fragment = new CategoryViewFramgent();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            if (!fragmentTransaction.isEmpty())
-            {
-                fragmentTransaction.remove(fragment);
-            }
-
-            fragmentTransaction.replace(R.id.fragment_switch, fragment);
-            fragmentTransaction.commit();
-
+            loadCategoryFragment();
         }
         else if (id == R.id.nav_account)
         {
-            //View Accounts fragment load
-            selectionFlag = 2;
-
-            AccountViewFragment fragment = new AccountViewFragment();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            if (!fragmentTransaction.isEmpty())
-            {
-                fragmentTransaction.remove(fragment);
-            }
-
-            fragmentTransaction.replace(R.id.fragment_switch, fragment);
-            fragmentTransaction.commit();
-
+            loadAccountFragment();
         }
         else if (id == R.id.nav_reminder)
         {
             //View Reminders fragment load
+            getSupportActionBar().setTitle("Reminder");
             selectionFlag = 3;
 
             ReminderViewFragment fragment = new ReminderViewFragment();
@@ -348,7 +312,6 @@ public class DashboardActivity extends AppCompatActivity
                         String newCategoryText = input.getText().toString();
 
 
-
                         try {
 
                             mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
@@ -357,8 +320,7 @@ public class DashboardActivity extends AppCompatActivity
                             Cursor categorySet = mydatabase.rawQuery("Select name from category", null);
                             Constants.categories = null;
                             Constants.categories = new ArrayList<String>();
-                            while (categorySet.moveToNext())
-                            {
+                            while (categorySet.moveToNext()) {
                                 Constants.categories.add(categorySet.getString(0));
                             }
 
@@ -375,14 +337,10 @@ public class DashboardActivity extends AppCompatActivity
                             fragmentTransaction.replace(R.id.fragment_switch, fragment);
                             fragmentTransaction.commit();
 
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Failed: Cannot add this category.", Toast.LENGTH_LONG).show();
-                        }
-                        finally {
-                            if(mydatabase.isOpen())
-                            {
+                        } finally {
+                            if (mydatabase.isOpen()) {
                                 mydatabase.close();
                             }
                         }
@@ -407,4 +365,58 @@ public class DashboardActivity extends AppCompatActivity
             builder.show();
         }
 
+    public void loadExpenseFragment()
+    {
+        //View Expenses Fragment load
+        selectionFlag = 0;
+        Constants.appNavState = 0;
+        getSupportActionBar().setTitle("Expense");
+        ExpenseViewFragment fragment = new ExpenseViewFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        if (!fragmentTransaction.isEmpty())
+        {
+            fragmentTransaction.remove(fragment);
+        }
+
+        fragmentTransaction.replace(R.id.fragment_switch, fragment);
+        fragmentTransaction.commit();
     }
+
+    public void loadCategoryFragment()
+    {
+        //View Categories fragment load
+        getSupportActionBar().setTitle("Category");
+        selectionFlag = 1;
+        Constants.appNavState = 1;
+        Constants.appNavState = 1;
+        CategoryViewFramgent fragment = new CategoryViewFramgent();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        if (!fragmentTransaction.isEmpty())
+        {
+            fragmentTransaction.remove(fragment);
+        }
+
+        fragmentTransaction.replace(R.id.fragment_switch, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void loadAccountFragment()
+    {
+        //View Accounts fragment load
+        getSupportActionBar().setTitle("Account");
+        selectionFlag = 2;
+        Constants.appNavState = 2;
+        AccountViewFragment fragment = new AccountViewFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        if (!fragmentTransaction.isEmpty())
+        {
+            fragmentTransaction.remove(fragment);
+        }
+
+        fragmentTransaction.replace(R.id.fragment_switch, fragment);
+        fragmentTransaction.commit();
+    }
+}

@@ -3,6 +3,7 @@ package app.expense.org.fragment;
 import android.app.Fragment;
 import android.content.Context;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -43,15 +44,34 @@ public class CategoryViewFramgent extends Fragment{
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 selectedCategoryText = "" + Constants.categories.get(position).toString();
 
                 Snackbar.make(view, "Category: " + Constants.categories.get(position), Snackbar.LENGTH_LONG)
-                        .setAction("Delete?", new View.OnClickListener() {
+                        .setAction("Delete ?", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                Toast.makeText(getActivity().getApplicationContext(), selectedCategoryText + "Category to be deleted.", Toast.LENGTH_SHORT).show();
+                                //Delete this selected category and clean ArrayList.
+                                mydatabase = getActivity().openOrCreateDatabase(Constants.dbname, getActivity().MODE_PRIVATE, null);
+                                mydatabase.execSQL("Delete from category where name = '" + Constants.categories.get(position) + "'");
+                                Constants.categories = null;
+                                Constants.filterCategory = null;
+                                Constants.filterCategory = new ArrayList<String>();
+                                //Getting all categories from db and holding it in Constants.
+                                Cursor categorySet = mydatabase.rawQuery("Select name from category", null);
+                                Constants.categories = new ArrayList<String>();
+                                while (categorySet.moveToNext())
+                                {
+                                    Constants.categories.add(categorySet.getString(0));
+                                }
+
+                                mydatabase.close();
+
+                                adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.categories);
+                                listView.setAdapter(adapter);
+
+                                Toast.makeText(getActivity().getApplicationContext(), selectedCategoryText + "Category deleted.", Toast.LENGTH_SHORT).show();
 
                             }
                         }).show();
@@ -60,4 +80,6 @@ public class CategoryViewFramgent extends Fragment{
 
         return view;
     }
+
+
 }

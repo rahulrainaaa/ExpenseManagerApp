@@ -55,7 +55,7 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Are you sure to delete?", Snackbar.LENGTH_LONG)
-                        .setAction("Action", new View.OnClickListener() {
+                        .setAction("Delete ?", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -92,5 +92,11 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                 }).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ExpenseDescriptionActivity.this, DashboardActivity.class));
+        super.onBackPressed();
     }
 }
