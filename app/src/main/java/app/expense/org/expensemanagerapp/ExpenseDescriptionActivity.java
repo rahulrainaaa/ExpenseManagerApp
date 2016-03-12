@@ -1,5 +1,6 @@
 package app.expense.org.expensemanagerapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -83,8 +84,9 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                         }
 
                         mydatabase.close();
-                        Toast.makeText(getApplicationContext(), "To be deleted.", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getApplicationContext(), "Expense Deleted.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ExpenseDescriptionActivity.this, DashboardActivity.class));
+                        finish();
 
                     }
                 }).show();
