@@ -280,7 +280,7 @@ public class DashboardActivity extends AppCompatActivity
                 //Getting all expenses data from db and holding in model object.
                 String filterStringAccount = "";
                 String filterStringCategory = "";
-                String expenseFilterQueryString = "Select * from expense where ";
+                String expenseFilterQueryString = "Select * from expense ";
                 boolean flagBoth = false;
                 int i = 0;
                 for (i = 0; i < Constants.filterAccount.size(); i++)
@@ -297,7 +297,7 @@ public class DashboardActivity extends AppCompatActivity
                 String addAccountFilter = "";
                 if(i > 0)
                 {
-                    addAccountFilter = "account IN (" + filterStringAccount + ") ";
+                    addAccountFilter = " where account IN (" + filterStringAccount + ") ";
                     expenseFilterQueryString = expenseFilterQueryString + "" + addAccountFilter;
                     flagBoth = true;
                 }
@@ -324,7 +324,7 @@ public class DashboardActivity extends AppCompatActivity
                     }
                     else
                     {
-                        expenseFilterQueryString = expenseFilterQueryString + " " + addCategoryFilter;
+                        expenseFilterQueryString = expenseFilterQueryString + " where " + addCategoryFilter;
                     }
                 }
 
