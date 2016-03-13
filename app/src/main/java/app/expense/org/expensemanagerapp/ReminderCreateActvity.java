@@ -27,7 +27,18 @@ public class ReminderCreateActvity extends AppCompatActivity {
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).show();
 
-
+                final AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+                final Intent intentAlarm = new Intent(ReminderCreateActvity.this, ReminderPendingActivity.class);
+                Calendar calendar =  Calendar.getInstance();
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MINUTE, 45);
+                calendar.set(Calendar.HOUR, 11);
+                calendar.set(Calendar.AM_PM, Calendar.AM);
+                calendar.set(Calendar.MONTH, 2);
+                calendar.set(Calendar.DAY_OF_MONTH, 13);
+                calendar.set(Calendar.YEAR, 2016);
+                long when = calendar.getTimeInMillis();
+                alarmManager.set(AlarmManager.RTC_WAKEUP, when, PendingIntent.getBroadcast(ReminderCreateActvity.this, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
             }
         });
     }
