@@ -8,6 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_category_create"
-    tools:context="app.expense.org.expensemanagerapp.CategoryCreateActivity">
+    tools:context=".ReminderPendingActivity">
 
 </RelativeLayout>

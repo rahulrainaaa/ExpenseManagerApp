@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-public class CategoryCreateActivity extends AppCompatActivity {
+public class ReminderPendingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class CategoryCreateActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         Toast.makeText(getApplicationContext(), "Changes Discarded.", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(CategoryCreateActivity.this, DashboardActivity.class));
+        startActivity(new Intent(ReminderPendingActivity.this, DashboardActivity.class));
         finish();
     }
 }
