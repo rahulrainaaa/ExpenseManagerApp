@@ -28,7 +28,6 @@ public class AccountViewAdapter extends ArrayAdapter<Account> {
         this.activity = activity;
         this.inflater = activity.getLayoutInflater();
         this.list = list;
-
     }
 
     @Override
@@ -40,10 +39,6 @@ public class AccountViewAdapter extends ArrayAdapter<Account> {
 
         accountName.setText("" + list.get(position).name.toString());
         accountDesc.setText("" + list.get(position).accountType.toString());
-
-
-
-
 
         return view;
     }

@@ -95,7 +95,6 @@ public class DashboardActivity extends AppCompatActivity
                     Snackbar.make(null, R.string.errorSelectionFlagValue, Snackbar.LENGTH_SHORT).show();
                 }
 
-
             }
         });
 
@@ -428,10 +427,8 @@ public class DashboardActivity extends AppCompatActivity
                                 mydatabase.close();
                             }
                         }
-
                     }
                 }
-
         );
 
             builder.setNegativeButton("Discard", new DialogInterface.OnClickListener()
@@ -443,9 +440,7 @@ public class DashboardActivity extends AppCompatActivity
                             dialog.cancel();
                         }
                     }
-
             );
-
             builder.show();
         }
 

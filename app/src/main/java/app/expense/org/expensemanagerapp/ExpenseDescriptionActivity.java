@@ -104,8 +104,6 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                             }
                         }
 
-
-
                         Toast.makeText(getApplicationContext(), "Expense Deleted.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ExpenseDescriptionActivity.this, DashboardActivity.class));
                         finish();

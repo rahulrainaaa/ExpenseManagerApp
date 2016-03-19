@@ -42,6 +42,7 @@
      :  \n1. Expense or Category or Accounts (any text field) will accept only alphabets or numeric keys.
         \n2. Special characters or other symbols in text fields will be notified with error and not accepted.
         \n3. If category or account is deleted, the corresponding expense will not be deleted and the account will remain same for it.
+        \n4. Minimum Android 4.0 version support for the app. Material design is included and will work on supported platforms.
 
         \n\n\n
         <u><b>Licensing and Copyrights</b></u>

@@ -65,6 +65,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     /**
      * UI components & data Array declarations.
      */
+    Toolbar toolbar;
     ImageView colorCanvas;
     EditText txtSpenton, txtPrice;
     DatePicker datepicker;
@@ -76,7 +77,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_create);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         txtSpenton = (EditText)findViewById(R.id.txtspenton);
@@ -130,7 +131,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
                 {
                     Snackbar.make(view, "Error: Cannot capture picture.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
-
             }
         });
         hideKeypad();
@@ -172,9 +172,8 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
             }
             else
             {
-                //expense data not valid--perform check
+                Snackbar.make(toolbar, "Please check for valid data entered in data fields.", Snackbar.LENGTH_LONG).show();
             }
-
 
             return true;
         }
@@ -211,7 +210,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
                 break;
             default:
                 break;
-
         }
     }
 
@@ -266,7 +264,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         String regex = "[a-zA-z0-9\\s]*";   //alphanumeria and space.
         try
         {
-
             if(tSpentOn.equalsIgnoreCase(""))
             {
                 txtSpenton.setError("Enter expense item");
@@ -314,7 +311,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     private void saveExpenseData()
     {
         //do SQLite operation to save data.
-
         mydatabase = openOrCreateDatabase(Constants.dbname, MODE_PRIVATE, null);
 
         String spenton = txtSpenton.getText().toString();
@@ -326,7 +322,6 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         String category = "" + Constants.categories.get(spinnerCategory.getSelectedItemPosition());
         String account = "" + Constants.account.get(spinnerAccount.getSelectedItemPosition());
         String hexcolor = String.format("%02x%02x%02x", red, green, blue);
-
 
         mydatabase.execSQL("INSERT INTO expense (spenton, price, datetime, account, category, image, indicator) VALUES ('" + spenton + "','" + price + "','" + datetime + "', '" + account + "', '" + category + "', '" + fileName + "', '" + hexcolor + "' )");
 

@@ -14,6 +14,5 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
 
-
     }
 }

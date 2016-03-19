@@ -47,7 +47,5 @@ public class ExpenseViewFragment extends Fragment implements AdapterView.OnItemC
         intent.putExtra("expensePosition",position);
         startActivity(intent);
         getActivity().finish();
-
-        //Toast.makeText(getActivity().getApplicationContext(), "item selected", Toast.LENGTH_SHORT).show();
     }
 }

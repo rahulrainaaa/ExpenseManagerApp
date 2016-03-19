@@ -55,7 +55,6 @@ public class SplashActivity extends AppCompatActivity {
             mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Saving Account','Savings','Saving Account transaction using debit card or online banking.')");
             mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Credit Card','Loan Account','Credit card bank account for transaction.')");
             mydatabase.execSQL("INSERT INTO account (name, type, desc) VALUES ('Paytm','Paytm Account','Paytm Account for online transactions.')");
-
         }
 
         //Getting all expenses data from db and holding in model object.
@@ -114,7 +113,6 @@ public class SplashActivity extends AppCompatActivity {
                 Constants.filterCategory = new ArrayList<String>();
                 startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
                 finish();
-
             }
         }, 1300);
 
@@ -123,7 +121,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Disable the back button for splash screen.
-
         finish();
     }
 
