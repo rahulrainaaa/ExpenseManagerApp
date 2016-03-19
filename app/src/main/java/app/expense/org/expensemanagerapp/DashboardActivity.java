@@ -152,7 +152,7 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            Toast.makeText(getApplicationContext(), "Expense Manager Application", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(DashboardActivity.this, AboutActivity.class));
             return true;
         }
 
@@ -522,7 +522,7 @@ public class DashboardActivity extends AppCompatActivity
     public void loadReminderFragment()
     {
         //View Reminders fragment load
-        getSupportActionBar().setTitle("Reminder");
+        getSupportActionBar().setTitle("Help");
         selectionFlag = 3;
         Constants.appNavState = 3;
         ReminderViewFragment fragment = new ReminderViewFragment();

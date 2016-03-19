@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_expense" android:icon="@android:drawable/ic_menu_camera"
+        <item android:id="@+id/nav_expense" android:icon="@android:drawable/ic_menu_agenda"
             android:title="Expense" />
-        <item android:id="@+id/nav_category" android:icon="@android:drawable/ic_menu_gallery"
+        <item android:id="@+id/nav_category" android:icon="@android:drawable/ic_menu_send"
             android:title="Category" />
-        <item android:id="@+id/nav_account" android:icon="@android:drawable/ic_menu_slideshow"
+        <item android:id="@+id/nav_account" android:icon="@android:drawable/ic_menu_edit"
             android:title="Account" />
-        <item android:id="@+id/nav_reminder" android:icon="@android:drawable/ic_menu_manage"
-            android:title="Reminder" />
+        <item android:id="@+id/nav_reminder" android:icon="@android:drawable/ic_menu_help"
+            android:title="Help" />
     </group>
 
     <item android:title="Expense Filter">
         <menu>
-            <item android:id="@+id/nav_category_filer" android:icon="@android:drawable/ic_menu_share"
+            <item android:id="@+id/nav_category_filer" android:icon="@android:drawable/ic_menu_search"
                 android:title="Category Filter" />
-            <item android:id="@+id/nav_account_filter" android:icon="@android:drawable/ic_menu_send"
+            <item android:id="@+id/nav_account_filter" android:icon="@android:drawable/ic_menu_preferences"
                 android:title="Account Filter" />
         </menu>
     </item>
