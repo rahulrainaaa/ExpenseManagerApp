@@ -58,7 +58,9 @@
         <receiver
             android:name="app.expense.org.receiver.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
