@@ -20,7 +20,6 @@ import app.expense.org.Model.Expense;
 import app.expense.org.expensemanagerapp.R;
 import app.expense.org.utils.Constants;
 
-
 /**
  * Created by user on 13/1/16.
  */
@@ -36,9 +35,7 @@ public class ExpenseViewAdapter extends ArrayAdapter<Expense> {
         this.activity = activity;
         this.inflater = activity.getLayoutInflater();
         this.list = list;
-
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -51,16 +48,13 @@ public class ExpenseViewAdapter extends ArrayAdapter<Expense> {
         TextView sideColor = (TextView)view.findViewById(R.id.indicatorSideBar);
         TextView priceExpense = (TextView)view.findViewById(R.id.txtPriceExpense);
 
-
         Expense expense = Constants.expenseData.get(position);
 
         textItem.setText(expense.spenton);
         priceExpense.setText("Rs." + expense.price);
         textDateTime.setText(expense.datetime);
-        textAccount.setText(expense.category + ", " + expense.account);
+        textAccount.setText(expense.category + "\n" + expense.account);
         sideColor.setText("" + (position + 1));
-        //Drawable drawable = activity.getResources().getDrawable(R.drawable.circleshape, null);
-        //sideColor.setBackgroundColor(Color.GREEN);
 
         return view;
     }

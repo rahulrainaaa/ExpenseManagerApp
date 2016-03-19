@@ -263,7 +263,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
 
         String tSpentOn = "" + txtSpenton.getText().toString().trim();
         String tPrice = "" + txtPrice.getText().toString().trim();
-        String regex = "[a-zA-z\\s]*";
+        String regex = "[a-zA-z0-9\\s]*";   //alphanumeria and space.
         try
         {
 

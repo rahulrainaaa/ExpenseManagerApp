@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingRight="10dp"
+        android:layout_marginLeft="5dp"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -20,8 +21,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
                 android:gravity="center"
                 android:id="@+id/indicatorSideBar"
                 android:backgroundTint="@color/colorAccent"
@@ -36,7 +37,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -54,33 +55,39 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="My Account Name"
             android:id="@+id/textViewAccount"
-            android:textColor="#6E6E6E"
+            android:textColor="#7c7c7c"
             android:layout_below="@+id/textView12" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="02-Jan-2016, 10:30 AM"
-            android:textColor="#8A8A8A"
-            android:id="@+id/textViewTime" />
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="02-Jan-2016, 10:30 AM"
+                android:gravity="start"
+                android:textColor="#838383"
+                android:id="@+id/textViewTime"
+                android:layout_weight="0.28" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Rs.1000000"
+                android:textColor="#B5B5B5"
+                android:id="@+id/txtPriceExpense"
+                android:layout_weight="0.53" />
+
+        </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center|end">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Rs.1000000"
-            android:textColor="#B5B5B5"
-            android:id="@+id/txtPriceExpense" />
-
-
-    </LinearLayout>
 
 </LinearLayout>
