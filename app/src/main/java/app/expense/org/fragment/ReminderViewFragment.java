@@ -21,8 +21,6 @@ public class ReminderViewFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_reminderview, null);
 
-        
-
         return view;
     }
 }

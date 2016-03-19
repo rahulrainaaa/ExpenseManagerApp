@@ -23,6 +23,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
@@ -454,6 +456,12 @@ public class DashboardActivity extends AppCompatActivity
     public void loadExpenseFragment()
     {
         //View Expenses Fragment load
+        if(selectionFlag == 3)
+        {
+            Animation animation = AnimationUtils.loadAnimation(DashboardActivity.this, android.R.anim.slide_in_left);
+            fab.startAnimation(animation);
+        }
+        fab.show();
         selectionFlag = 0;
         Constants.appNavState = 0;
         getSupportActionBar().setTitle("Expense");
@@ -476,6 +484,12 @@ public class DashboardActivity extends AppCompatActivity
     public void loadCategoryFragment()
     {
         //View Categories fragment load
+        if(selectionFlag == 3)
+        {
+            Animation animation = AnimationUtils.loadAnimation(DashboardActivity.this, android.R.anim.slide_in_left);
+            fab.startAnimation(animation);
+        }
+        fab.show();
         getSupportActionBar().setTitle("Category");
         selectionFlag = 1;
         Constants.appNavState = 1;
@@ -499,6 +513,12 @@ public class DashboardActivity extends AppCompatActivity
     public void loadAccountFragment()
     {
         //View Accounts fragment load
+        if(selectionFlag == 3)
+        {
+            Animation animation = AnimationUtils.loadAnimation(DashboardActivity.this, android.R.anim.slide_in_left);
+            fab.startAnimation(animation);
+        }
+        fab.show();
         getSupportActionBar().setTitle("Account");
         selectionFlag = 2;
         Constants.appNavState = 2;
@@ -521,6 +541,9 @@ public class DashboardActivity extends AppCompatActivity
     public void loadReminderFragment()
     {
         //View Reminders fragment load
+        Animation animation = AnimationUtils.loadAnimation(DashboardActivity.this, android.R.anim.fade_out);
+        fab.startAnimation(animation);
+        fab.hide();
         getSupportActionBar().setTitle("Help");
         selectionFlag = 3;
         Constants.appNavState = 3;

@@ -19,6 +19,35 @@
 
     <string name="help_page_full_text">
 
+        <u><b>Expense Manager Features:</b></u>
+        \n\n
+        <i><u>Expense</u></i>
+            :  Create, View and Delete the Expense. Create your expenses corresponding to specific category and account used for the transaction.
+        \n\n
+        <i><u>Category</u></i>
+            :  Create, View and Delete simply the category name (like: Food, Transport, Grocery etc).
+        \n\n
+        <i><u>Account</u></i>
+            :  Create, View and Delete Account. Account will include Account Name (you want to set the name), Account Type (like: saving account, current account, paytm etc) and Account Description.
+        \n\n
+        <i><u>Category Filter</u></i>
+            :  Filter the expenses data for viewing. Select the categories to show expenses only of those categories. If not selected any of them then all category expenses will be automatically selected.
+
+        \n\n
+        <i><u>Account Filter</u></i>
+            :  Filter the expense with respect to accounts. Select the accounts whose expense you want to show. If not selected any then all expenses will be selected by default.
+
+        \n\n\n
+        <u><b>Note</b></u>
+     :  \n1. Expense or Category or Accounts (any text field) will accept only alphabets or numeric keys.
+        \n2. Special characters or other symbols in text fields will be notified with error and not accepted.
+        \n3. If category or account is deleted, the corresponding expense will not be deleted and the account will remain same for it.
+
+        \n\n\n
+        <u><b>Licensing and Copyrights</b></u>
+        :  This project is developed as open source application and source code is available to modify and redistribute.
+        The project comes under GNU General Public License.
+
 
     </string>
 </resources>
