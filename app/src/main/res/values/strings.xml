@@ -16,4 +16,9 @@
     <string name="title_activity_category_create">New Category</string>
     <string name="title_activity_account_create_activitiy">New Account</string>
     <string name="title_activity_reminder_create_actvity">New Reminder</string>
+
+    <string name="help_page_full_text">
+
+
+    </string>
 </resources>

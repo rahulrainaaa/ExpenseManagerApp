@@ -88,8 +88,7 @@ public class DashboardActivity extends AppCompatActivity
                     finish();
                 } else if (selectionFlag == 3) {
                     //Add new reminder
-                    startActivity(new Intent(DashboardActivity.this, ReminderCreateActvity.class));
-                    finish();
+                    loadExpenseFragment();
                 } else {
                     Snackbar.make(null, R.string.errorSelectionFlagValue, Snackbar.LENGTH_SHORT).show();
                 }
@@ -517,7 +516,7 @@ public class DashboardActivity extends AppCompatActivity
 
     /**
      *@method: loadReminderFragment
-     *@desc: loads Reminder Fragment
+     *@desc: loads Reminder Fragment (HELP Fragment as of now).
      */
     public void loadReminderFragment()
     {
