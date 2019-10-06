@@ -38,14 +38,14 @@ public class CategoryViewFramgent extends Fragment{
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.framgment_viewcategory, null);
 
-        listView = (ListView)view.findViewById(R.id.listViewCategory);
+        listView = view.findViewById(R.id.listViewCategory);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Constants.categories);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                selectedCategoryText = "" + Constants.categories.get(position).toString();
+                selectedCategoryText = "" + Constants.categories.get(position);
 
                 Snackbar.make(view, "Category: " + Constants.categories.get(position), Snackbar.LENGTH_LONG)
                         .setAction("Delete ?", new View.OnClickListener() {

@@ -34,11 +34,11 @@ public class AccountViewAdapter extends ArrayAdapter<Account> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.listviewitem_account_view, null);
 
-        TextView accountName = (TextView)view.findViewById(R.id.account_name);
-        TextView accountDesc = (TextView)view.findViewById(R.id.account_desc);
+        TextView accountName = view.findViewById(R.id.account_name);
+        TextView accountDesc = view.findViewById(R.id.account_desc);
 
-        accountName.setText("" + list.get(position).name.toString());
-        accountDesc.setText("" + list.get(position).accountType.toString());
+        accountName.setText("" + list.get(position).name);
+        accountDesc.setText("" + list.get(position).accountType);
 
         return view;
     }

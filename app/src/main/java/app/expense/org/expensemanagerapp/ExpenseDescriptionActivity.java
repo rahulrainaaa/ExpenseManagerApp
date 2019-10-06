@@ -35,15 +35,15 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_description);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textPrice = (TextView)findViewById(R.id.textPrice);
-        textTime = (TextView)findViewById(R.id.textTime);
-        textCategory = (TextView)findViewById(R.id.textCategory);
-        textAccount = (TextView)findViewById(R.id.textAccount);
-        imgExpense = (ImageView)findViewById(R.id.imageExpense);
-        appBarLayout = (AppBarLayout)findViewById(R.id.app_bar);
+        textPrice = findViewById(R.id.textPrice);
+        textTime = findViewById(R.id.textTime);
+        textCategory = findViewById(R.id.textCategory);
+        textAccount = findViewById(R.id.textAccount);
+        imgExpense = findViewById(R.id.imageExpense);
+        appBarLayout = findViewById(R.id.app_bar);
 
         final int position = getIntent().getIntExtra("expensePosition",0);
         final Expense expense = Constants.expenseData.get(position);
@@ -61,7 +61,7 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
             imgExpense.setImageBitmap(myBitmap);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,14 +82,14 @@ public class ExpenseDescriptionActivity extends AppCompatActivity {
                         {
                             // (id, spenton, price, datetime, account, category, image, indicator)
                             Expense expense = new Expense();
-                            expense.id = Integer.parseInt(expenseSet.getString(0).toString());
-                            expense.spenton = expenseSet.getString(1).toString();
-                            expense.price = expenseSet.getString(2).toString();
-                            expense.datetime = expenseSet.getString(3).toString();
-                            expense.account = expenseSet.getString(4).toString();
-                            expense.category = expenseSet.getString(5).toString();
-                            expense.image = expenseSet.getString(6).toString();
-                            expense.color = expenseSet.getString(7).toString();
+                            expense.id = Integer.parseInt(expenseSet.getString(0));
+                            expense.spenton = expenseSet.getString(1);
+                            expense.price = expenseSet.getString(2);
+                            expense.datetime = expenseSet.getString(3);
+                            expense.account = expenseSet.getString(4);
+                            expense.category = expenseSet.getString(5);
+                            expense.image = expenseSet.getString(6);
+                            expense.color = expenseSet.getString(7);
 
                             Constants.expenseData.add(expense);
                         }

@@ -77,16 +77,16 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_create);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        txtSpenton = (EditText)findViewById(R.id.txtspenton);
-        txtPrice = (EditText)findViewById(R.id.txtprice);
-        datepicker = (DatePicker)findViewById(R.id.datepicker_expense);
-        timePicker = (TimePicker)findViewById(R.id.timepicker_expense);
+        txtSpenton = findViewById(R.id.txtspenton);
+        txtPrice = findViewById(R.id.txtprice);
+        datepicker = findViewById(R.id.datepicker_expense);
+        timePicker = findViewById(R.id.timepicker_expense);
 
-        spinnerAccount = (Spinner)findViewById(R.id.spinner_account);
-        spinnerCategory =(Spinner)findViewById(R.id.spinner_category);
+        spinnerAccount = findViewById(R.id.spinner_account);
+        spinnerCategory = findViewById(R.id.spinner_category);
 
         accountAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.account);
         categoryAdapter = new ArrayAdapter<String>(ExpenseCreateActivity.this, android.R.layout.simple_spinner_dropdown_item, Constants.categories);
@@ -97,7 +97,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         spinnerAccount.setOnItemSelectedListener(this);
         spinnerCategory.setOnItemSelectedListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,7 +317,7 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         String price = txtPrice.getText().toString();
         String datemonth = new DateFormatSymbols().getMonths()[datepicker.getMonth()];
         String setdate = datepicker.getDayOfMonth() + " " + datemonth + "," + datepicker.getYear();
-        String settime = String.valueOf(timePicker.getCurrentHour()) + ":" + String.valueOf(timePicker.getCurrentMinute());
+        String settime = timePicker.getCurrentHour() + ":" + timePicker.getCurrentMinute();
         String datetime = "" + setdate + "  " + settime;
         String category = "" + Constants.categories.get(spinnerCategory.getSelectedItemPosition());
         String account = "" + Constants.account.get(spinnerAccount.getSelectedItemPosition());
@@ -332,14 +332,14 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         {
             // (id, spenton, price, datetime, account, category, image, indicator)
             Expense expense = new Expense();
-            expense.id = Integer.parseInt(expenseSet.getString(0).toString());
-            expense.spenton = expenseSet.getString(1).toString();
-            expense.price = expenseSet.getString(2).toString();
-            expense.datetime = expenseSet.getString(3).toString();
-            expense.account = expenseSet.getString(4).toString();
-            expense.category = expenseSet.getString(5).toString();
-            expense.image = expenseSet.getString(6).toString();
-            expense.color = expenseSet.getString(7).toString();
+            expense.id = Integer.parseInt(expenseSet.getString(0));
+            expense.spenton = expenseSet.getString(1);
+            expense.price = expenseSet.getString(2);
+            expense.datetime = expenseSet.getString(3);
+            expense.account = expenseSet.getString(4);
+            expense.category = expenseSet.getString(5);
+            expense.image = expenseSet.getString(6);
+            expense.color = expenseSet.getString(7);
 
             Constants.expenseData.add(expense);
         }
@@ -356,11 +356,11 @@ public class ExpenseCreateActivity extends AppCompatActivity implements AdapterV
         LayoutInflater inflater = getLayoutInflater();
         View v = inflater.inflate(R.layout.dialog_color_rgb_select, null);
 
-        colorCanvas = (ImageView)v.findViewById(R.id.imageViewMixcolor);
+        colorCanvas = v.findViewById(R.id.imageViewMixcolor);
 
-        SeekBar seekBarRed = (SeekBar)v.findViewById(R.id.seekBarR);
-        SeekBar seekBarGreen = (SeekBar)v.findViewById(R.id.seekBarG);
-        SeekBar seekBarBlue = (SeekBar)v.findViewById(R.id.seekBarB);
+        SeekBar seekBarRed = v.findViewById(R.id.seekBarR);
+        SeekBar seekBarGreen = v.findViewById(R.id.seekBarG);
+        SeekBar seekBarBlue = v.findViewById(R.id.seekBarB);
 
         seekBarRed.setProgress(0);
         seekBarRed.incrementProgressBy(1);

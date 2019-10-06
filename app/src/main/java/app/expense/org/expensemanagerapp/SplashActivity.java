@@ -64,14 +64,14 @@ public class SplashActivity extends AppCompatActivity {
         {
         // (id, spenton, price, datetime, account, category, image, indicator)
             Expense expense = new Expense();
-            expense.id = Integer.parseInt(expenseSet.getString(0).toString());
-            expense.spenton = expenseSet.getString(1).toString();
-            expense.price = expenseSet.getString(2).toString();
-            expense.datetime = expenseSet.getString(3).toString();
-            expense.account = expenseSet.getString(4).toString();
-            expense.category = expenseSet.getString(5).toString();
-            expense.image = expenseSet.getString(6).toString();
-            expense.color = expenseSet.getString(7).toString();
+            expense.id = Integer.parseInt(expenseSet.getString(0));
+            expense.spenton = expenseSet.getString(1);
+            expense.price = expenseSet.getString(2);
+            expense.datetime = expenseSet.getString(3);
+            expense.account = expenseSet.getString(4);
+            expense.category = expenseSet.getString(5);
+            expense.image = expenseSet.getString(6);
+            expense.color = expenseSet.getString(7);
 
             Constants.expenseData.add(expense);
         }

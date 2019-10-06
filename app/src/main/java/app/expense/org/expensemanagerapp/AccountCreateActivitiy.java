@@ -30,16 +30,16 @@ public class AccountCreateActivitiy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_create_activitiy);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //UI mapping done.
-        txtAccount = (EditText)findViewById(R.id.editTextAccount);
-        txtType = (EditText)findViewById(R.id.editTextType);
-        txtDesc = (EditText)findViewById(R.id.editTextDesc);
+        txtAccount = findViewById(R.id.editTextAccount);
+        txtType = findViewById(R.id.editTextType);
+        txtDesc = findViewById(R.id.editTextDesc);
 
         //Float button for addition.
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

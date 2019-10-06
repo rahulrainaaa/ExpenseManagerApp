@@ -32,7 +32,7 @@ public class ExpenseViewFragment extends Fragment implements AdapterView.OnItemC
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.framgment_viewexpense, null);
 
-        lw = (ListView)view.findViewById(R.id.listViewExpense);
+        lw = view.findViewById(R.id.listViewExpense);
 
         adapter = new ExpenseViewAdapter(getActivity(), Constants.expenseData);
         lw.setAdapter(adapter);

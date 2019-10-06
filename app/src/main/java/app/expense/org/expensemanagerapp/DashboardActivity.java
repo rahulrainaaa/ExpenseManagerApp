@@ -65,11 +65,11 @@ public class DashboardActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ListView listView;
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,13 +98,13 @@ public class DashboardActivity extends AppCompatActivity
             }
         });
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         if(Constants.appNavState == 0)
@@ -287,11 +287,11 @@ public class DashboardActivity extends AppCompatActivity
                 {
                     if(i == 0)
                     {
-                        filterStringAccount = "'" + Constants.filterAccount.get(i).toString() + "'";
+                        filterStringAccount = "'" + Constants.filterAccount.get(i) + "'";
                     }
                     else
                     {
-                        filterStringAccount = filterStringAccount + ",'" + Constants.filterAccount.get(i).toString() + "'";
+                        filterStringAccount = filterStringAccount + ",'" + Constants.filterAccount.get(i) + "'";
                     }
                 }
                 String addAccountFilter = "";
@@ -306,11 +306,11 @@ public class DashboardActivity extends AppCompatActivity
                 {
                     if(i == 0)
                     {
-                        filterStringCategory = "'" + Constants.filterCategory.get(i).toString() + "'";
+                        filterStringCategory = "'" + Constants.filterCategory.get(i) + "'";
                     }
                     else
                     {
-                        filterStringCategory = filterStringCategory + ",'" + Constants.filterCategory.get(i).toString() + "'";
+                        filterStringCategory = filterStringCategory + ",'" + Constants.filterCategory.get(i) + "'";
                     }
                 }
 
@@ -342,14 +342,14 @@ public class DashboardActivity extends AppCompatActivity
                 {
                     // (id, spenton, price, datetime, account, category, image, indicator)
                     Expense expense = new Expense();
-                    expense.id = Integer.parseInt(expenseSet.getString(0).toString());
-                    expense.spenton = expenseSet.getString(1).toString();
-                    expense.price = expenseSet.getString(2).toString();
-                    expense.datetime = expenseSet.getString(3).toString();
-                    expense.account = expenseSet.getString(4).toString();
-                    expense.category = expenseSet.getString(5).toString();
-                    expense.image = expenseSet.getString(6).toString();
-                    expense.color = expenseSet.getString(7).toString();
+                    expense.id = Integer.parseInt(expenseSet.getString(0));
+                    expense.spenton = expenseSet.getString(1);
+                    expense.price = expenseSet.getString(2);
+                    expense.datetime = expenseSet.getString(3);
+                    expense.account = expenseSet.getString(4);
+                    expense.category = expenseSet.getString(5);
+                    expense.image = expenseSet.getString(6);
+                    expense.color = expenseSet.getString(7);
 
                     Constants.expenseData.add(expense);
                 }

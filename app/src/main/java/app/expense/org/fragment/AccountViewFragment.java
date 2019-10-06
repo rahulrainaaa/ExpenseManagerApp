@@ -36,7 +36,7 @@ public class AccountViewFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.framgment_viewaccount, null);
 
-        listView = (ListView)view.findViewById(R.id.listViewAccount);
+        listView = view.findViewById(R.id.listViewAccount);
         adapter = new AccountViewAdapter(getActivity(), Constants.accountData);
         listView.setAdapter(adapter);
 

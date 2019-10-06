@@ -42,11 +42,11 @@ public class ExpenseViewAdapter extends ArrayAdapter<Expense> {
 
         View view = inflater.inflate(R.layout.listviewitem_expense_view, null);
 
-        TextView textItem = (TextView)view.findViewById(R.id.textViewItem);
-        TextView textDateTime = (TextView)view.findViewById(R.id.textViewTime);
-        TextView textAccount = (TextView)view.findViewById(R.id.textViewAccount);
-        TextView sideColor = (TextView)view.findViewById(R.id.indicatorSideBar);
-        TextView priceExpense = (TextView)view.findViewById(R.id.txtPriceExpense);
+        TextView textItem = view.findViewById(R.id.textViewItem);
+        TextView textDateTime = view.findViewById(R.id.textViewTime);
+        TextView textAccount = view.findViewById(R.id.textViewAccount);
+        TextView sideColor = view.findViewById(R.id.indicatorSideBar);
+        TextView priceExpense = view.findViewById(R.id.txtPriceExpense);
 
         Expense expense = Constants.expenseData.get(position);
 
